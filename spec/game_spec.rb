@@ -2,16 +2,30 @@ require 'game'
 
 describe Game do
 
-  let(:player) { double :Player, receive_damage: true}
-  let(:game) { described_class.new(player)}
+  let(:game) { described_class.new(player_1, player_2)}
+  let(:player_1) { double :player_1, receive_damage: nil  }
+  let(:player_2) { double :player_2, receive_damage: nil  }
 
-  describe "#attack" do
-    it "should reduce opponents HP" do
-
-      expect(player).to respond_to(:receive_damage)
-      game.attack(player)
+  describe "initialize" do
+    it "should contain an array with two players" do
+      expect(game.players).to eq [player_1, player_2]
+    end
+  end
+  describe '#player_1' do
+    it 'gives the first player' do
+      expect(game.player_1).to eq player_1
     end
   end
 
-
+  describe '#player_2' do
+    it 'gives the second player' do
+      expect(game.player_2).to eq player_2
+    end
+  end
+  describe "#attack" do
+    it "should reduce opponents HP" do
+      expect(player_2).to receive(:receive_damage)
+      game.attack(player_2)
+    end
+  end
 end
