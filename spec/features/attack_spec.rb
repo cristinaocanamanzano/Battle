@@ -15,4 +15,13 @@ feature "Attacking opponent" do
     expect(page).not_to have_content("Cristina HP: 100")
     expect(page).to have_content("Cristina HP: 90")
   end
+
+  scenario "reduces HP of opponent by 10" do
+    sign_in_and_play
+    click_button "attack"
+    click_button "ok"
+    click_button "attack"
+    expect(page).not_to have_content("Marianne HP: 100")
+    expect(page).to have_content("Marianne HP: 90")
+  end
 end

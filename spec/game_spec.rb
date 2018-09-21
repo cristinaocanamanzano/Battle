@@ -3,8 +3,8 @@ require 'game'
 describe Game do
 
   let(:game) { described_class.new(player_1, player_2)}
-  let(:player_1) { double :player_1, receive_damage: nil  }
-  let(:player_2) { double :player_2, receive_damage: nil  }
+  let(:player_1) { double :player_1, receive_damage: nil }
+  let(:player_2) { double :player_2, receive_damage: nil }
 
   describe "initialize" do
     it "should contain an array with two players" do
@@ -38,7 +38,7 @@ describe Game do
   describe "#switch turn" do
     it "switches players turn after attacking" do
       game.attack(player_2)
-      expect(game.switch_turn).to eq player_2
+      expect(game.player_turn).to eq player_2
     end
   end
 end

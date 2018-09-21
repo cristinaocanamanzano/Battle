@@ -18,8 +18,23 @@ class Game
 
   def attack(player)
     player.receive_damage
+    switch_turn
   end
 
   def switch_turn
+    if @player_turn == player_1
+      @player_turn = player_2
+    elsif @player_turn == player_2
+      @player_turn = player_1
+    end
   end
+
+  def opponent
+    if @player_turn == player_1
+      player_2
+    elsif @player_turn == player_2
+      player_1
+    end
+  end
+
 end
